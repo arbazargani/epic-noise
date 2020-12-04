@@ -26,6 +26,8 @@ class CreateArtistsTable extends Migration
             // $table->text('deezer_url')->nullable();
             $table->json('artist_info')->nullable();
             $table->text('description')->nullable();
+            
+            $table->text('hash')->nullable();
             $table->timestamps();
         });
     }

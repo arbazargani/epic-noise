@@ -17,7 +17,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/', 'App\Http\Controllers\PublicController@Boot');
+Route::get('/', 'App\Http\Controllers\PublicController@Boot')->name('Public > Index');
 
 Route::prefix('preset')->group(function () {
     Route::get('add_1', 'App\Http\Controllers\ArtistController@Preset_AddArtist');
@@ -30,8 +30,6 @@ Route::get('/artist/{id}', 'App\Http\Controllers\ArtistController@ShowArtistById
 Route::get('/artist/{slug}', 'App\Http\Controllers\ArtistController@ShowArtistBySlug')->name('Artist > Show Artist');
 
 Route::get('/album/{id}', 'App\Http\Controllers\AlbumController@ShowAlbumById')->name('Album > Show Album');
-
 Route::get('/single/{id}', 'App\Http\Controllers\MediaController@StreamSingle')->name('Single > Play Single');
 
-
-Route::get('/render_asset/{type}/{media}', 'App\Http\Controllers\PublicController@RenderAsset');
+Route::get('/media/{type}/{hash}', 'App\Http\Controllers\MediaController@RenderMedia')->name('Media > Render Media');

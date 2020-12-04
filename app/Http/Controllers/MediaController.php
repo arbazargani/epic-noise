@@ -27,6 +27,9 @@ class MediaController extends Controller
         $media->artist_id = 1;
         $media->save();
 
+        $media->hash = sha1($media->id);
+        $media->save();
+
         return 'single added.';
     }
     
@@ -54,6 +57,9 @@ class MediaController extends Controller
         $media->album_id = 1;
         $media->save();
 
+        $media->hash = sha1($media->id);
+        $media->save();
+
         $media = new Media();
         $media->name = 'Dark Paradise';
         $media->url = 'lana_del_ray_dark_paradise.mp3';
@@ -74,6 +80,9 @@ class MediaController extends Controller
         $media->release_date = 2012;
         $media->artist_id = 2;
         $media->album_id = 1;
+        $media->save();
+
+        $media->hash = sha1($media->id);
         $media->save();
 
         $media = new Media();
@@ -98,6 +107,9 @@ class MediaController extends Controller
         $media->album_id = 1;
         $media->save();
 
+        $media->hash = sha1($media->id);
+        $media->save();
+
         $media = new Media();
         $media->name = 'Born to Die';
         $media->url = 'lana_del_ray_born_to_die.mp3';
@@ -120,6 +132,9 @@ class MediaController extends Controller
         $media->album_id = 1;
         $media->save();
 
+        $media->hash = sha1($media->id);
+        $media->save();
+
         return 'item added to album.';
     }
 
@@ -127,5 +142,18 @@ class MediaController extends Controller
     {
         $media = Media::FindOrFail($id);
         return view('public.player', compact(['media']));
+    }
+
+    public function RenderMedia(Request $request, $type, $hash) {
+        if ($type == 'single') {
+            $media = Media::where('hash', $hash)->first();
+            return ($media) ? response()->file("storage/$type/{$media->url}") : abort(404);
+        } elseif ($type == 'image') {
+            $image = '';
+            return ($image) ? response()->file('storage/{$type}/{$media}') : abort(404);
+        } else {
+            return abort(404);
+        }
+        
     }
 }

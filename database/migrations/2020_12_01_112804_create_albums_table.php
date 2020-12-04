@@ -24,6 +24,7 @@ class CreateAlbumsTable extends Migration
             $table->unsignedBigInteger('artist_id')->nullable();
             $table->foreign('artist_id')->references('id')->on('artists');
 
+            $table->text('hash')->nullable();
             $table->timestamps();
         });
     }

@@ -30,6 +30,7 @@ class CreateMediaTable extends Migration
             $table->unsignedBigInteger('album_id')->nullable();
             $table->foreign('album_id')->references('id')->on('albums');
 
+            $table->text('hash')->nullable();
             $table->timestamps();
         });
     }

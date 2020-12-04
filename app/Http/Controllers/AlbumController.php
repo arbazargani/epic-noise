@@ -23,7 +23,8 @@ class AlbumController extends Controller
         $media->artist_id = 2;
         $media->save();
 
-        return 'album added.';
+        $media->hash = sha1($media->id);
+        $media->save();
 
         $media = new Album();
         $media->name = 'Lust for Life';
@@ -34,6 +35,9 @@ class AlbumController extends Controller
         ]);
         $media->description = 'Lust for Life is the fifth studio album by American singer Lana Del Rey, released on July 21, 2017, through Polydor Records and Interscope Records.';
         $media->artist_id = 2;
+        $media->save();
+
+        $media->hash = sha1($media->id);
         $media->save();
 
         return 'album added.';

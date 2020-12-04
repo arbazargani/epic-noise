@@ -29,6 +29,9 @@ class ArtistController extends Controller
         $artist->description = 'Gordon Matthew Thomas Sumner CBE, known as Sting, is an English musician, singer, songwriter, and actor. He was the principal songwriter, lead singer, and bassist for new wave rock band the Police from 1977 to 1984, and launched a solo career in 1985.';
         $artist->save();
 
+        $artist->hash = sha1($artist->id);
+        $artist->save();
+
         $artist = new Artist();
         $artist->name = 'Lana Del Rey';
         $artist->slug = 'lana_del_rey';
@@ -44,6 +47,9 @@ class ArtistController extends Controller
             'deezer_url' => 'https://www.deezer.com/artist/1424821/radio?autoplay=true',
         ]);
         $artist->description = 'Elizabeth Woolridge Grant, known by her stage name Lana Del Rey, is an American singer-songwriter. Her music is noted for its stylized, cinematic quality; themes of sadness, tragic romance, glamor, and melancholia; and references to pop culture, particularly 1950s and 1960s Americana.';
+        $artist->save();
+
+        $artist->hash = sha1($artist->id);
         $artist->save();
 
         return 'artists added.';

@@ -14,11 +14,7 @@ class PublicController extends Controller
     {
         $featured_media = Media::latest()->first();
         $medias = Media::latest()->get();
-        return view('themes.' . env('THEME_NAME') . '.index', compact(['featured_media', 'medias']));
-    }
-
-    public function RenderAsset($type, $media)
-    {
-        return response()->file('storage/{$type}/{$media}');
+        return view('simple');
+        // return view('themes.' . env('THEME_NAME') . '.index', compact(['featured_media', 'medias']));
     }
 }
